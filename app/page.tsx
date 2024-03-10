@@ -1,113 +1,164 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import Image from "next/image";
+import React from "react";
+
+import { FaGitAlt, FaLink, FaReact } from "react-icons/fa6";
+import { IoLogoAngular } from "react-icons/io5";
+import { SiCss3, SiHtml5, SiIonic, SiJavascript, SiNestjs, SiNextdotjs, SiRedux, SiSass, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { Input } from "./components/Input";
+import { Header } from "./components/Header";
+import { BiSolidMobileVibration } from "react-icons/bi";
+import { PiDeviceTabletFill } from "react-icons/pi";
+import { MdWeb } from "react-icons/md";
+import Link from "next/link";
+
+export default function PageHome() {
+
+  const listStacksTecnologies: React.ReactNode[] = [
+    <FaGitAlt color="#F05032" size={25}/>,
+    <SiNextdotjs size={25}/>,
+    <IoLogoAngular color="#DD0031" size={25}/>,
+    <FaReact color="#61DAFB" size={25}/>,
+    <SiIonic color="#3880ff" size={25}/>,
+    <SiRedux color="#764ABC" size={25}/>,
+    <SiJavascript color="#F7DF1E" size={25}/>,
+    <SiTypescript color="#007ACC" size={25}/>,
+    <SiHtml5 color="#E34F26" size={25}/>,
+    <SiTailwindcss color="#1E40AF" size={25}/>,
+    <SiCss3 color="#1572B6" size={25}/>,
+    <SiSass color="#CC6699" size={25} />
+  ]
+
+  const inputValue = (a: any) => {
+    console.log(a)
+  }
+
+  const sendEmail = () => {
+    console.log('Email send')
+  }
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
+    <section className="h-full flex flex-col justify-center items-center gap-[25px]">
+      <Header />
+      <div id="about_me" className="flex items-center py-[30px] gap-[80px]">
+        <div className="w-[50%]">
+          <div className="h-[475px] rounded-[300px] overflow-hidden animate-[showElementTransitionLeftToRight_2s_1_forwards]">
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+              className="rounded-[300px] object-cover h-[475px] overflow-hidden cursor-pointer"
+              src='/mauricio.JPG'
+              width={500}
+              height={100}
+              alt='Picture of the author'
             />
-          </a>
+          </div>
+        </div>
+        <div className="w-[50%] flex flex-col justify-center gap-[20px] animate-[showElementTransitionRightToLeft_2s_1_forwards]">
+          <h1 className="text-right text-[35px] font-bold pr-[85px]">FrontEnd Developer Jr</h1>
+          <div>
+            <hr />
+            <p className="leading-7 font-semibold text-wrap text-left text-[18px]">
+              I'm started in this world before go to the university, but I don't knew that code will like me a lot, 
+              I'm apasionate of technologies to convert ideas on appWebs resilients and scalables with good practices 
+              of code and more 3+ years experience, always focus on new technologies.
+            </p>
+          </div>
+          <div className="flex flex-col gap-[20px]">
+            <h2 className="text-left text-[25px] font-bold pr-[85px]">Tecnologies</h2>
+            <hr />
+            <div className="flex items-center justify-between">
+              {listStacksTecnologies.map((icon, i) => {
+                return <span key={i} className="cursor-pointer">{icon}</span>
+              })}
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div id="skills" className="flex items-center">
+        <div className="w-[50%]">
+          <p className="leading-7 font-semibold text-wrap text-left text-[18px]">
+            I have skills on handle and creation of apps give an interface easy and comprenssible.
+            The formularies interactives give then confidence on union with interface friendly and easy, always puting users how first intance, 
+            showing the status of app while are doing process on app, while more easy is the app, more users will come, but always keeping the logic of bussines 
+            to an app scalables and resilient.
+          </p>
+        </div>
+        <div className="w-[50%] flex flex-col items-center pl-[60px]">
+          <h1 className="text-[45px] font-bold tracking-[10px] uppercase">skills</h1>
+          <div className="h-[60px] w-[300px] flex justify-between items-center">
+            <BiSolidMobileVibration className="animate-[circle_5s_ease-in-out_infinite]" size={30} />
+            <PiDeviceTabletFill className="animate-[circle_5s_ease-in-out_infinite]" size={35}/>
+            <MdWeb className="animate-[circle_5s_ease-in-out_infinite]" size={40} />
+          </div>
+        </div>
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      <div className="w-full text-center flex flex-col justify-center gap-[25px]">
+        <h1 className="text-[45px] font-bold tracking-[10px] uppercase">projects</h1>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        <section className="flex justify-center items-center">
+          <div className="w-[60%] flex flex-col gap-[10px]">
+            <div className="flex gap-[20px]">
+              <Image
+                className="rounded-[10px] cursor-pointer"
+                objectFit="contain"
+                alt='desktop-image'
+                src='/desktop-groups.png'
+                width={400}
+                height={400}/>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+              <Image
+                className="rounded-[10px] cursor-pointer"
+                objectFit="cover"
+                alt='mobile-image'
+                src='/mobile-groups.png'
+                width={150}
+                height={100}/>
+            </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+            <div className="flex gap-[20px]">
+              <Image
+                className="rounded-[10px] cursor-pointer"
+                objectFit="contain"
+                alt='desktop-image'
+                src='/desktop-predictions.png'
+                width={400}
+                height={400}/>
+
+              <Image
+                className="rounded-[10px] cursor-pointer"
+                objectFit="cover"
+                alt='mobile-image'
+                src='/mobile-predictions.png'
+                width={150}
+                height={100}/>
+            </div>
+          </div>
+          <div className="w-[40%] flex flex-col gap-[20px]">
+            <div className="flex justify-center items-center">
+              <h1 className="text-center text-[25px] font-bold pr-[10px]">Oscar's Pool</h1>
+              <Link href="https://oscars2024.enelrodaje.com/">
+                <FaLink className="hover:text-blue-500" cursor='pointer' size={20} />
+              </Link>
+            </div>
+            <p className="leading-7 font-semibold text-wrap text-left text-[18px]">
+              This is an app of predictions to oscar's edition 2024, there you will see and selecte the actors,
+              directors, best movies by categories and more, create groups, add friends by emails (@gmail) 
+              and be the member of your group with more points and predictions corrects test your lucky see you there
+            </p>
+          </div>
+        </section>
       </div>
-    </main>
-  );
+
+      <div id="contact_me" className="w-full flex items-center">
+        <div className="w-[50%] items-start">
+          <h1 className="text-[45px] font-bold tracking-[10px] uppercase">contact me</h1>
+        </div>
+        <div className="w-[50%] flex flex-col items-end">
+          <Input textInputValue={inputValue} actionFn={sendEmail} />
+        </div>
+      </div>
+    </section>
+  )
 }
