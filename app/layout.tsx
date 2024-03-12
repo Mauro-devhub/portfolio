@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mauricio"
+  title: "Mauricio Sánchez"
 };
 
 export default function RootLayout({
@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html className="h-full" lang="en">
-      <body className={`bg-[rgb(243,243,243)] flex flex-col justify-center items-center px-[300px] ${inter.className}`}>{children}</body>
+      <body className={`bg-[rgb(243,243,243)] overflow-x-hidden flex flex-col justify-center items-center px-[300px] ${inter.className}`}>{children}</body>
     </html>
   );
 }
