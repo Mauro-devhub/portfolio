@@ -3,20 +3,41 @@
 import { useState } from "react";
 import { BiMailSend } from "react-icons/bi";
 
-export const Input = (props: {textInputValue: any, actionFn: any}) => {
+export class MessageProps {
+  actionFn!: ({name, email, message}: {[key: string]: string}) => void;
+}
 
-  const [textAreaValue, setTextAreaValue] = useState('');
+export const Message = ({actionFn}: MessageProps) => {
 
-  const onChangeTextAreaValue = (onChangeTextAreaValue: any) => {
-    setTextAreaValue(onChangeTextAreaValue.target.value)
-    props.textInputValue(textAreaValue)
+  const [nameValue, setNameValue] = useState('');
+  const [emailValue, setEmailValue] = useState('');
+  const [messageValue, setMessageValue] = useState('');
+
+  const message = {
+    name: nameValue,
+    email: emailValue,
+    message: messageValue
+  }
+
+  const onChangeNameValue = (name: any) => {
+    setNameValue(name.target.value);
+  }
+
+  const onChangeEmailValue = (email: any) => {
+    setEmailValue(email.target.value);
+  }
+
+  const onChangeMessageValue = (message: any) => {
+    setMessageValue(message.target.value);
   }
 
   return (
     <section className="flex flex-col w-[360px] gap-[10px]">
       <div className="flex flex-col items-end gap-[10px]">
-        <textarea value={textAreaValue} placeholder="send email" onChange={onChangeTextAreaValue} className="bg-[] h-[130px] w-[420px] p-[20px] resize-none rounded-[10px] outline-none" />
-        <button onClick={() => {props.actionFn, setTextAreaValue('')}} className="overflow-hidden uppercase bg-[#071630] text-[white] text-[12px] h-[30px] w-[50px] p-[5px] rounded-[20px] hover:w-[90px] duration-[1s] relative">
+        <input value={nameValue} type="text" placeholder="Name" onChange={onChangeNameValue} className="h-[30px] w-[420px] p-[20px] resize-none rounded-[10px] outline-none hover:shadow-[0_5px_30px_5px_rgba(0,0,0,0.3)] duration-[1s]" />
+        <input value={emailValue} type="text" placeholder="Email" onChange={onChangeEmailValue} className="h-[30px] w-[420px] p-[20px] resize-none rounded-[10px] outline-none hover:shadow-[0_5px_30px_5px_rgba(0,0,0,0.3)] duration-[1s]" />
+        <textarea value={messageValue} placeholder="Message" onChange={onChangeMessageValue} className="h-[130px] w-[420px] p-[20px] resize-none rounded-[10px] outline-none hover:shadow-[0_5px_30px_5px_rgba(0,0,0,0.3)] duration-[1s]" />
+        <button onClick={() => actionFn({name: message.name, email: message.email, message: message.message})} className="overflow-hidden uppercase bg-[#071630] text-[white] text-[12px] h-[30px] w-[50px] p-[5px] rounded-[20px] hover:w-[90px] duration-[1s] relative">
           <BiMailSend className="animate-[sendEmail_1.5s_ease-in-out_infinite] transition-transform duration-300" size={25} />
         </button>
       </div>
