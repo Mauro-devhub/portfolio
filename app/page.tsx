@@ -17,7 +17,7 @@ import Link from "next/link";
 import { Message } from "./components/Message";
 import { Header } from "./components/Header";
 import { LINK_URLS } from "./constans/url.constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function PageHome() {
 
@@ -25,15 +25,17 @@ export default function PageHome() {
   const [heightScreen, setHeightScreen] = useState<number>();
   const [widthScreen, setWidthScreen] = useState<number>();
 
-  window.addEventListener('scroll', function() {
-    const scrollPosition = window.scrollY;
-    setScrollPosition(scrollPosition);
-  })
+  useEffect(() => {
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.scrollY;
+      setScrollPosition(scrollPosition);
+    })
 
-  window.addEventListener('resize', function() {
-    const screenWidth = window.screen.width;
-    setWidthScreen(screenWidth);
-  })
+    window.addEventListener('resize', function() {
+      const screenWidth = window.screen.width;
+      setWidthScreen(screenWidth);
+    })
+  }, [scrollPosition, widthScreen]);
 
   const getValueMessage = (objMessage: any) => {
     console.log(objMessage);
