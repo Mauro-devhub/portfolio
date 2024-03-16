@@ -11,7 +11,7 @@ export interface IOptionsMenu {
   icon: React.ReactNode;
 }
 
-export const Menu = () => {
+export const Menu = (): React.ReactNode => {
 
   const optionsMenu: IOptionsMenu[] = [
     {
@@ -37,14 +37,14 @@ export const Menu = () => {
   ]
 
   return (
-    <nav>
+    <nav className="max-[640px]:hidden">
       <li className="flex items-center gap-[25px]">
         {optionsMenu.map((e, i) => {
-          return <div className="hover:text-[#1f224f]">
-                    <Link className="hover:text-[#1f224f]" key={i} href={e.link}>
+          return <div key={i} className="hover:text-[#1f224f]">
+                    <Link className="hover:text-[#1f224f]" href={e.link}>
                       <div className="flex flex-col justify-center items-center">
                         <span>{e.icon}</span>
-                        <span className="text-[12px] font-medium uppercase">{e.option}</span>
+                        <span className="text-[12px] font-medium uppercase max-[768px]:text-[8px]">{e.option}</span>
                       </div>
                     </Link>
                   </div>
