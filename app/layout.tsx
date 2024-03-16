@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html className="h-full" lang="en">
-      <body className={`bg-[rgb(243,243,243)] overflow-x-hidden flex flex-col justify-center items-center px-[300px] ${inter.className}`}>{children}</body>
+      <body className={`bg-[rgb(243,243,243)] overflow-x-hidden w-full flex flex-col items-center ${inter.className}`}>{children}</body>
     </html>
   );
 }
