@@ -196,9 +196,7 @@ export default function PageHome() {
           <div>
             <hr />
             <p className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
-              Im started in this world before go to the university, but I dont knew that code will like me a lot, 
-              Im apasionate of technologies to convert ideas on appWebs resilients and scalables with good practices 
-              of code and more 3+ years experience, always focus on new technologies.
+              I started on this journey before attending university, but I didn’t know I’d like to code this much. I’m passionate about technologies to convert ideas into resilient and scalable web apps with good practices and <strong>more than 3 years of experience</strong>, always focusing on new technologies.
             </p>
           </div>
           <div className="flex flex-col gap-[20px]">
@@ -220,10 +218,7 @@ export default function PageHome() {
       <div id="skills" className="flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse items-center gap-[80px] max-[1280px]:gap-[45px]">
         <div className="w-[50%] max-[1024px]:w-full animate-[showElementTransitionRightToLeft_2s_1_forwards]">
           <p className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
-            I have skills on handle and creation of apps give an interface easy and comprenssible.
-            The formularies interactives give then confidence on union with interface friendly and easy, always puting users how first intance, 
-            showing the status of app while are doing process on app, while more easy is the app, more users will come, but always keeping the logic of bussines 
-            to an app scalables and resilient.
+            I’m skilled at handling and creating apps, producing user-friendly, comprehensible and accessible interfaces. I always have a user-centric mindset, the easier it is to use the app, the more users will engage, everything while always keeping a business logic centered on maintainability and scalability.
           </p>
         </div>
         <div className="w-[50%] max-[640px]:w-full flex flex-col justify-center items-center gap-[20px] animate-[showElementTransitionLeftToRight_2s_1_forwards]">
@@ -326,9 +321,7 @@ export default function PageHome() {
               <hr className="w-full" />
             </div>
             <p className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
-              This is an app of predictions to oscars edition 2024, there you will see and select the actors,
-              directors, best movies by categories and more, create groups, add friends by emails (@gmail) 
-              and be the member of your group with more points and predictions corrects test your lucky see you there.
+              This is an Oscars 2024 predictions app. There you’ll see and choose the actors, directors, movies and more nominees, create groups, add friends via email (@gmail) and be the member of your group with more points and predictions right. Test your luck! See you there!
             </p>
           </div>
         </section>
@@ -415,8 +408,7 @@ export default function PageHome() {
               </div>
               <hr className="mb-[20px]"/>
               <p className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
-                Spazzio enhances residents experience by providing tools to efficiently reserve, report, and manage 
-                the financial aspects of their condominium.
+                Spazzio enhances residents’ experience by providing tools to efficiently reserve, report and manage the financial aspects of their condominium.
               </p>
             </div>
           </div>
