@@ -18,24 +18,58 @@ const config: Config = {
           '0%': {transform: 'rotate(100deg) translateX(0px) rotate(0deg)'},
           '100%': {transform: 'rotate(100deg) translateX(0px) rotate(-360deg)'}
         },
-        showElementTransitionLeftToRight: {
+        showElementsTransitionOpacity: {
           '0%': {
-            transform: 'translateX(-90px)',
             opacity: '0'
           },
           '100%': {
-            transform: 'translateX(0px)',
             opacity: '1'
+          }
+        },
+        showElementTransitionLeftToRight: {
+          '0%': {
+            transform: 'translateX(0)',
+          },
+          '100%': {
+            transform: 'translateX(45%)',
           }
         },
         showElementTransitionRightToLeft: {
           '0%': {
-            transform: 'translateX(90px)',
+            transform: 'translateX(80%)',
+          },
+          '100%': {
+            transform: 'translateX(0%)',
+          }
+        },
+        showElementTransitionOpacityLeftToRight: {
+          '0%': {
+            transform: 'translateX(0)',
             opacity: '0'
           },
           '100%': {
-            transform: 'translateX(0px)',
+            transform: 'translateX(14%)',
             opacity: '1'
+          }
+        },
+        showElementTransitionOpacityRightToLeft: {
+          '0%': {
+            transform: 'translateX(0)',
+            opacity: '0'
+          },
+          '100%': {
+            transform: 'translateX(-45%)',
+            opacity: '1'
+          }
+        },
+        showElementTransitionOpacityBottomToTop: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(90px)'
+          }, 
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(20px)'
           }
         },
         sendEmail: {
@@ -56,17 +90,20 @@ const config: Config = {
           '100%': {
             transform: 'translateY(0)'
           }
-        }
+        },
       },
       animation: {
         spin: 'spin 3s ease-in-out infinite',
-        showElementTransitionLeftToRight: 'showElementTransitionLeftToRight 2s 1 forwards',
-        showElementTransitionRightToLeft: 'showElementTransitionRightToLeft 2s 1 forwards',
+        showElementTransitionOpacityBottomToTop: 'showElementTransitionOpacityBottomToTop linear both',
+        showElementsTransitionOpacity: 'showElementsTransitionOpacity 1.2s linear forwards',
+        showElementTransitionRightToLeft: 'showElementTransitionRightToLeft linear both',
+        showElementTransitionOpacityLeftToRight: 'showElementTransitionOpacityLeftToRight linear both',
+        showElementTransitionOpacityRightToLeft: 'showElementTransitionOpacityRightToLeft linear both',
         sendEmail: 'sendEmail 1.5s ease-in-out infinite',
         circle: 'circle 5s ease-in-out infinite'
       }
     },
   },
-  plugins: [],
+  plugins: []
 };
 export default config;
