@@ -196,9 +196,7 @@ export default function PageHome() {
             <div>
               <hr />
               <p className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
-                Im started in this world before go to the university, but I dont knew that code will like me a lot, 
-                Im apasionate of technologies to convert ideas on appWebs resilients and scalables with good practices 
-                of code and more 3+ years experience, always focus on new technologies.
+                I started on this journey before attending university, but I didn’t know I’d like to code this much. I’m passionate about technologies to convert ideas into resilient and scalable web apps with good practices and <strong>more than 3 years of experience</strong>, always focusing on new technologies.
               </p>
             </div>
             <div className="flex flex-col gap-[20px]">
@@ -212,51 +210,20 @@ export default function PageHome() {
             </div>
           </div>
         </div>
-        {/* <div className="w-[50%] max-[1024px]:w-full">
-          <div className="flex justify-center items-center max-[1024px]:flex max-[1024px]:justify-center rounded-[300px] overflow-hidden animate-showElementTransitionLeftToRight">
-            <Image
-              className="2xl:h-[500px] 2xl:w-[500px] xl:h-[450px] xl:w-[450px] lg:h-[400px] lg:w-[400px] md:h-[400px] md:w-[400px] max-[768px]:h-[300px] max-[768px]:w-[300px] max-[640px]:h-[200px] max-[640px]:w-[200px] rounded-[300px] object-cover h-[475px] overflow-hidden cursor-pointer"
-              src='/mauricio.JPG'
-              width={500}
-              height={100}
-              alt='Picture of the author'
-            />
-          </div>
-        </div> */}
-        {/* animate-[showElementTransitionRightToLeft_2s_1_forwards] */}
-
-        {/* <div className="w-[50%] max-[1024px]:w-full flex flex-col justify-center gap-[20px]">
-          <h1 className="text-right max-[1024px]:text-center text-[30px] font-medium">FrontEnd Developer Jr</h1>
-          <div>
-            <hr />
-            <p className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
-              I started on this journey before attending university, but I didn’t know I’d like to code this much. I’m passionate about technologies to convert ideas into resilient and scalable web apps with good practices and <strong>more than 3 years of experience</strong>, always focusing on new technologies.
-            </p>
-          </div>
-          <div className="flex flex-col gap-[20px]">
-            <h2 className="text-left text-[25px] font-bold pr-[85px]">Tecnologies</h2>
-            <hr />
-            <div className="flex flex-wrap gap-[10px] items-center justify-between animate-scrollTecnologies [animation-range:0px_200px] [animation-timeline:scroll()]">
-              {listStacksTecnologies.map((icon, i) => {
-                return <span key={i} className="cursor-pointer">{icon}</span>
-              })}
-            </div>
-          </div>
-        </div> */}
       </div>
     )
   }
 
   const skills = (): React.ReactNode => {
     return (
-      <div id="skills" className="flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse items-center gap-[80px] max-[1280px]:gap-[45px] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:10%_30%] max-[1024px]:[animation-timeline:scroll(root)]">
+      <div id="skills" className="flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse items-center gap-[80px] max-[1280px]:gap-[45px] animate-showElementTransitionOpacityBottomToTop [animation-range:5%_20%] [animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:10%_30%] max-[1024px]:[animation-timeline:scroll(root)]">
         <div className="w-[50%] max-[1024px]:w-full animate-showElementTransitionRightToLeft">
           <p className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
             I’m skilled at handling and creating apps, producing user-friendly, comprehensible and accessible interfaces. I always have a user-centric mindset, the easier it is to use the app, the more users will engage, everything while always keeping a business logic centered on maintainability and scalability.
           </p>
         </div>
         <div className="w-[50%] max-[640px]:w-full flex flex-col justify-center items-center gap-[20px] animate-showElementTransitionLeftToRight">
-          <h1 className="text-center text-[30px] font-medium tracking-[10px] uppercase">skills</h1>
+          <h1 className="text-center text-[30px] font-medium tracking-[10px] uppercase min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:10%_25%] min-[1024px]:[animation-timeline:scroll(root)]">skills</h1>
           <hr className="w-full" />
           <div className="h-[60px] w-full flex flex-wrap justify-around items-center">
             <BiSolidMobileVibration className="animate-circle" size={30} />
@@ -270,9 +237,9 @@ export default function PageHome() {
 
   const projects = (): React.ReactNode => {
     return (
-      <div id="projects" className="w-full text-center flex flex-col justify-center gap-[25px]">
+      <div id="projects" className="w-full text-center flex flex-col justify-center gap-[15px]">
         <section className="mt-[50px] flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse max-[1390px]:flex-col-reverse max-[1390px]:gap-[40px] items-center gap-[80px]">
-          <div className="bg-[#d1daddcb] max-[465px]:p-[10px] rounded-[20px] p-[20px] flex flex-col justify-center items-center gap-[10px] animate-showElementTransitionRightToLeft max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_40%] max-[1024px]:[animation-timeline:scroll(root)]">
+          <div className="bg-[#d1daddcb] max-[465px]:p-[10px] rounded-[20px] p-[20px] flex flex-col justify-center items-center gap-[10px] animate-showElementTransitionRightToLeft  min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:19%_30%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_40%] max-[1024px]:[animation-timeline:scroll(root)]">
             <div className="flex justify-center items-center gap-[20px] max-[695px]:hidden">
               <Image
                 className="object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
@@ -345,10 +312,10 @@ export default function PageHome() {
                 height={400}/>
             </div>
           </div>
-          <div className="w-[50%] max-[1024px]:w-full flex flex-col gap-[20px] animate-showElementTransitionRightToLeft max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_45%] max-[1024px]:[animation-timeline:scroll(root)]">
+          <div className="w-[50%] max-[1024px]:w-full flex flex-col gap-[20px] animate-showElementTransitionRightToLeft min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:15%_30%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_45%] max-[1024px]:[animation-timeline:scroll(root)]">
             <h1 className="text-center text-[30px] font-bold tracking-[10px] uppercase">projects</h1>
             <div className="flex flex-col items-center max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_40%] max-[1024px]:[animation-timeline:scroll(root)]">
-              <div className="flex items-center">
+              <div className="flex items-center min-[1024px]:mb-[30px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:20%_35%] min-[1024px]:[animation-timeline:scroll(root)]">
                 <h1 className="text-center text-[25px] font-bold pr-[10px]">Oscars <span className="text-[#d1ab5d]">Pool</span></h1>
                 <FaLink onClick={() => openWindowUrl(LINK_URLS.oscarsPoolUrl)} className="hover:text-blue-500" cursor='pointer' size={20} />
               </div>
@@ -361,7 +328,7 @@ export default function PageHome() {
         </section>
 
         <section className="flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse min-[1393px]:translate-y-[-90px] max-[1390px]:flex-col-reverse min-[1390px]:flex-row-reverse max-[1390px]:gap-[40px] items-center gap-[80px]">
-          <div className="bg-[#d1daddcb] max-[465px]:p-[10px] rounded-[20px] p-[20px] flex flex-col justify-center items-center gap-[10px] animate-showElementTransitionRightToLeft max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:35%_80%] max-[1024px]:[animation-timeline:scroll(root)]">
+          <div className="bg-[#d1daddcb] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:35%_50%] min-[1024px]:[animation-timeline:scroll(root)] max-[465px]:p-[10px] rounded-[20px] p-[20px] flex flex-col justify-center items-center gap-[10px] animate-showElementTransitionRightToLeft max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:35%_80%] max-[1024px]:[animation-timeline:scroll(root)]">
             <div className="flex justify-center items-center gap-[20px] max-[695px]:hidden">
               <Image
                 className="object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
@@ -434,9 +401,9 @@ export default function PageHome() {
                 height={400}/>
             </div>
           </div>
-          <div className="w-[50%] max-[1024px]:w-full flex flex-col gap-[20px] 2xl:translate-y-[20px] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:30%_75%] max-[1024px]:[animation-timeline:scroll(root)]">
+          <div className="w-[50%] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:40%_55%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:w-full flex flex-col gap-[20px] 2xl:translate-y-[20px] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:30%_75%] max-[1024px]:[animation-timeline:scroll(root)]">
             <div className="animate-showElementTransitionLeftToRight">
-              <div className="mb-[30px] flex justify-center items-center max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:35%_70%] max-[1024px]:[animation-timeline:scroll(root)]">
+              <div className="mb-[30px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:45%_55%] min-[1024px]:[animation-timeline:scroll(root)] flex justify-center items-center max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:35%_70%] max-[1024px]:[animation-timeline:scroll(root)]">
                 <h1 className="text-center text-[25px] font-bold pr-[10px]">Sp<span className="text-[#295A95]">a</span>zzio</h1>
                 <FaLink onClick={() => openWindowUrl(LINK_URLS.spazzioUrl)} className="hover:text-blue-500" cursor='pointer' size={20} />
               </div>
@@ -454,7 +421,7 @@ export default function PageHome() {
 
   const peopleSayContent = (): React.ReactNode => {
     return (
-      <section id="people_say" className="flex flex-col gap-[10px] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:75%_95%] max-[1024px]:[animation-timeline:scroll(root)]">
+      <section id="people_say" className="flex flex-col gap-[10px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:50%_75%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:75%_95%] max-[1024px]:[animation-timeline:scroll(root)]">
         <h1 className="text-center text-[25px] font-bold pr-[10px]">People Say</h1>
         <hr />
         <div className="flex flex-wrap gap-[10px] justify-center">
@@ -468,11 +435,11 @@ export default function PageHome() {
 
   const contactMe = (): React.ReactNode => {
     return (
-      <div id="contact_me" className="py-[20px] w-full flex justify-between items-center max-[1390px]:flex-col-reverse gap-[20px] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:90%_100%] max-[1024px]:[animation-timeline:scroll(root)]">
-        <div className="w-[800px] max-[1280px]:w-[450px] max-[640px]:w-[300px] bg-[#d1daddcb] flex justify-center p-[20px] max-[640px]:p-[10px] rounded-[20px]">
+      <div id="contact_me" className="py-[20px] min-[1024px]:m-[30px] w-full flex justify-between items-center max-[1390px]:flex-col-reverse gap-[20px] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:85%_100%] max-[1024px]:[animation-timeline:scroll(root)]">
+        <div className="w-[800px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:90%_100%] min-[1024px]:[animation-timeline:scroll(root)] max-[1280px]:w-[450px] max-[640px]:w-[300px] bg-[#d1daddcb] flex justify-center p-[20px] max-[640px]:p-[10px] rounded-[20px]">
           <Message actionFn={getValueMessage} />
         </div>
-        <div className="w-full flex flex-col max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:95%_100%] max-[1024px]:[animation-timeline:scroll(root)]">
+        <div className="w-full flex flex-col min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:90%_100%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:95%_100%] max-[1024px]:[animation-timeline:scroll(root)]">
           <h1 className="text-center text-[30px] font-bold tracking-[10px] text-nowrap uppercase">contact me</h1>
           <div className="flex justify-center items-center">
             <ul className="list-disc ml-2 text-gray-light">
