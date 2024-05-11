@@ -17,13 +17,18 @@ import Link from "next/link";
 import { Message } from "./components/Message";
 import { Header } from "./components/Header";
 import { LINK_URLS } from "./constans/url.constants";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { EmailContext, EmailDto } from "./context/service-email.context";
+import { ModalContext } from "./context/modal.context";
+import { ConfirmModal } from "./components/Modal";
 
 export default function PageHome() {
 
   const [scrollPosition, setScrollPosition] = useState<number>();
   const [heightScreen, setHeightScreen] = useState<number>();
   const [widthScreen, setWidthScreen] = useState<number>();
+  const emailContext = useContext(EmailContext);
+  const modalContext = useContext(ModalContext);
 
   useEffect(() => {
     window.addEventListener('scroll', function() {
@@ -38,20 +43,24 @@ export default function PageHome() {
   }, [scrollPosition, widthScreen]);
 
   const getValueMessage = (objMessage: any) => {
-    console.log(objMessage);
+    const { name, email, message } = objMessage;
+    if (name.length > 1, email.includes('@'), message.length > 1) {
+      modalContext.openModal(ConfirmModal({
+        title: 'Modal',
+        message: 'a',
+        accept: modalContext.closeModal,
+        cancel: modalContext.closeModal,
+        acceptLabel: 'y',
+        cancelLabel: 'n'
+      }))
+
+      return;
+    }
+    
+    emailContext.setEmail(objMessage);
   }
 
   const peoples: {fullName: string, organization: string, comment: string}[] = [
-    {
-      fullName: 'Ricardo Caicedo',
-      organization: 'CEO Guilt\'s',
-      comment: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam minima rerum eveniet aliquid quae enim, quos ex dolores, blanditiis, tempore incidunt quidem reiciendis. Ipsum saepe quia sit tempora. Qui, rerum!'
-    },
-    {
-      fullName: 'Rachell Sánchez',
-      organization: 'SCRUM MASTER',
-      comment: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam minima rerum eveniet aliquid quae enim, quos ex dolores, blanditiis, tempore incidunt quidem reiciendis. Ipsum saepe quia sit tempora. Qui, rerum!'
-    },
     {
       fullName: 'Ricardo Caicedo',
       organization: 'CEO Guilt\'s',
@@ -83,9 +92,9 @@ export default function PageHome() {
     window.open(url, '_blank');
   }
 
-  const peopleSay = (people: {fullName: string, organization: string, comment: string}): React.ReactNode => {
+  const peopleSay = (people: {fullName: string, organization: string, comment: string, key: number}): React.ReactNode => {
     return (
-      <section className="bg-[#d1daddcb] rounded-[20px] h-[200px] w-[300px] flex flex-col justify-center p-[20px] gap-[10px] hover:shadow-[0_10px_20px_1px_rgba(0,0,0,0.3)] duration-[1s] cursor-pointer overflow-hidden animate-showElementTransitionRightToLeft">
+      <section key={people.key} className="bg-[#d1daddcb] rounded-[20px] h-[200px] w-[300px] flex flex-col justify-center p-[20px] gap-[10px] hover:shadow-[0_10px_20px_1px_rgba(0,0,0,0.3)] duration-[1s] cursor-pointer overflow-hidden animate-showElementTransitionRightToLeft">
         <div className="flex items-center gap-[10px] text-[10px] text-left font-semibold">
           <Image
             className="rounded-[40px] border-[1px] border-[#1f224f] p-[3px] object-cover cursor-pointer"
@@ -105,7 +114,7 @@ export default function PageHome() {
             color="#F5F5F5"
             size={40} />
         </div>
-        <div className="overflow-scroll text-start leading-[15px] text-[12px]">
+        <div className="text-start leading-[15px] text-[12px]">
           <span className="font-semibold">
             {people.comment}
           </span>
@@ -241,16 +250,14 @@ export default function PageHome() {
         <section className="mt-[50px] flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse max-[1390px]:flex-col-reverse max-[1390px]:gap-[40px] items-center gap-[80px]">
           <div className="bg-[#d1daddcb] max-[465px]:p-[10px] rounded-[20px] p-[20px] flex flex-col justify-center items-center gap-[10px] animate-showElementTransitionRightToLeft  min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:19%_30%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_40%] max-[1024px]:[animation-timeline:scroll(root)]">
             <div className="flex justify-center items-center gap-[20px] max-[695px]:hidden">
-              <Image
-                className="object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
+              <Image className="object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
                 objectFit="cover"
                 alt='desktop-image'
-                src='/spazzio-desktop.png'
+                src='/oscars-desktop.png'
                 width={400}
                 height={400}/>
 
-              <Image
-                className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
+              <Image className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
                 objectFit="cover"
                 alt='mobile-image'
                 src='/mobile-groups.jpg'
@@ -299,7 +306,7 @@ export default function PageHome() {
                 className="max-[640px]:h-[170px] max-[640px]:w-[300px] object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
                 objectFit="cover"
                 alt='desktop-image'
-                src='/spazzio-desktop.png'
+                src='/oscars-desktop.png'
                 width={400}
                 height={400}/>
 
@@ -342,7 +349,7 @@ export default function PageHome() {
                 className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
                 objectFit="cover"
                 alt='mobile-image'
-                src='/mobile-groups.jpg'
+                src='/spazzio-mobile.PNG'
                 width={100}
                 height={100}/>
             </div>
@@ -352,7 +359,7 @@ export default function PageHome() {
                 className="object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
                 objectFit="cover"
                 alt='desktop-image'
-                src='/desktop-predictions.png'
+                src='/spazzio-area.png'
                 width={400}
                 height={400}/>
 
@@ -360,7 +367,7 @@ export default function PageHome() {
                 className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
                 objectFit="cover"
                 alt='mobile-image'
-                src='/mobile-predictions.png'
+                src='/spazzio-mobile-opts.PNG'
                 width={100}
                 height={100}/>
             </div>
@@ -370,7 +377,7 @@ export default function PageHome() {
                 className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
                 objectFit="cover"
                 alt='mobile-image'
-                src='/mobile-predictions.png'
+                src='/spazzio-mobile-opts.PNG'
                 width={100}
                 height={100}/>
 
@@ -378,7 +385,7 @@ export default function PageHome() {
                 className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
                 objectFit="cover"
                 alt='mobile-image'
-                src='/mobile-groups.jpg'
+                src='/spazzio-mobile.PNG'
                 width={100}
                 height={100}/>
             </div>
@@ -396,7 +403,7 @@ export default function PageHome() {
                 className="max-[640px]:h-[170px] max-[640px]:w-[300px] object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
                 objectFit="cover"
                 alt='desktop-image'
-                src='/desktop-predictions.png'
+                src='/spazzio-area.png'
                 width={400}
                 height={400}/>
             </div>
@@ -425,8 +432,9 @@ export default function PageHome() {
         <h1 className="text-center text-[25px] font-bold pr-[10px]">People Say</h1>
         <hr />
         <div className="flex flex-wrap gap-[10px] justify-center">
-          {peoples.map((people) => {
-            return peopleSay(people);
+          {peoples.map((people, i) => {
+            const { fullName, organization, comment } = people;
+            return peopleSay({fullName, organization, comment, key: i});
           })}
         </div>
       </section>
@@ -460,9 +468,6 @@ export default function PageHome() {
         {skills()}
         {projects()}
         {contactMe()}
-        <section className="flex items-center justify-between">
-          {/* {peopleSayContent()} */}
-        </section>
         {Number(scrollPosition) > 98 || Number(widthScreen) < 640 ? optionFloatMenuTemporally() : <></>}
       </main>
       <footer className="m-[10px] flex justify-center items-center flex-wrap">
