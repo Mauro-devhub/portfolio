@@ -43,19 +43,19 @@ export default function PageHome() {
   }, [scrollPosition, widthScreen]);
 
   const getValueMessage = (objMessage: any) => {
-    const { name, email, message } = objMessage;
-    if (name.length > 1, email.includes('@'), message.length > 1) {
-      modalContext.openModal(ConfirmModal({
-        title: 'Modal',
-        message: 'a',
-        accept: modalContext.closeModal,
-        cancel: modalContext.closeModal,
-        acceptLabel: 'y',
-        cancelLabel: 'n'
-      }))
+    // const { name, email, message } = objMessage;
+    // if (name.length > 1, email.includes('@'), message.length > 1) {
+    //   modalContext.openModal(ConfirmModal({
+    //     title: 'Modal',
+    //     message: 'a',
+    //     accept: modalContext.closeModal,
+    //     cancel: modalContext.closeModal,
+    //     acceptLabel: 'y',
+    //     cancelLabel: 'n'
+    //   }))
 
-      return;
-    }
+    //   return;
+    // }
     
     emailContext.setEmail(objMessage);
   }
