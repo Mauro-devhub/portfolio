@@ -1,4 +1,5 @@
 'use client';
+
 import { createContext } from "react";
 import { sendEmail } from "../resend-email/send-email";
 
@@ -9,16 +10,14 @@ export class EmailDto {
 }
 
 export class EmailContextProps {
-  setEmail!: (email: EmailDto) => void;
+  setEmail!: (email: EmailDto) => Promise<any>;
 }
 
 export const EmailContext = createContext(new EmailContextProps());
 
 export const EmailProvider = ({ children }: {children: React.ReactNode}) => {
 
-  const setEmail = (email: EmailDto) => {
-    sendEmail(email);
-  }
+  const setEmail = async (email: EmailDto) => await sendEmail(email);
 
   return (
     <EmailContext.Provider value={{setEmail}}>

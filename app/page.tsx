@@ -14,21 +14,20 @@ import { GoProjectSymlink } from "react-icons/go";
 import { GrContact } from "react-icons/gr";
 import Link from "next/link";
 
-import { Message } from "./components/Message";
+import { MessageForm } from "./components/Message";
 import { Header } from "./components/Header";
 import { LINK_URLS } from "./constans/url.constants";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { EmailContext, EmailDto } from "./context/service-email.context";
-import { ModalContext } from "./context/modal.context";
-import { ConfirmModal } from "./components/Modal";
 
-export default function PageHome() {
+export default function PageHome(): React.ReactNode {
 
   const [scrollPosition, setScrollPosition] = useState<number>();
   const [heightScreen, setHeightScreen] = useState<number>();
   const [widthScreen, setWidthScreen] = useState<number>();
   const emailContext = useContext(EmailContext);
-  const modalContext = useContext(ModalContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDone, setIsdone] = useState(false);
 
   useEffect(() => {
     window.addEventListener('scroll', function() {
@@ -42,22 +41,22 @@ export default function PageHome() {
     })
   }, [scrollPosition, widthScreen]);
 
-  const getValueMessage = (objMessage: any) => {
-    // const { name, email, message } = objMessage;
-    // if (name.length > 1, email.includes('@'), message.length > 1) {
-    //   modalContext.openModal(ConfirmModal({
-    //     title: 'Modal',
-    //     message: 'a',
-    //     accept: modalContext.closeModal,
-    //     cancel: modalContext.closeModal,
-    //     acceptLabel: 'y',
-    //     cancelLabel: 'n'
-    //   }))
+  const getValueMessage = (objMessage: EmailDto): void => {
+    setIsLoading(true);
 
-    //   return;
-    // }
-    
-    emailContext.setEmail(objMessage);
+    emailContext.setEmail(objMessage)
+      .then(() => {
+        setIsdone(true);
+        
+        setTimeout(() => {
+          setIsdone(false);
+          setIsLoading(false);
+        }, 800);
+      })
+      .catch(() => {
+        setIsLoading(false);
+        setIsdone(false);
+      })
   }
 
   const peoples: {fullName: string, organization: string, comment: string}[] = [
@@ -88,7 +87,7 @@ export default function PageHome() {
     <SiSass key={0} color="#CC6699" size={25} />
   ]
 
-  const openWindowUrl = (url: string) => {
+  const openWindowUrl = (url: string): void => {
     window.open(url, '_blank');
   }
 
@@ -445,7 +444,7 @@ export default function PageHome() {
     return (
       <div id="contact_me" className="py-[20px] min-[1024px]:m-[30px] w-full flex justify-between items-center max-[1390px]:flex-col-reverse gap-[20px] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:85%_100%] max-[1024px]:[animation-timeline:scroll(root)]">
         <div className="w-[800px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:90%_100%] min-[1024px]:[animation-timeline:scroll(root)] max-[1280px]:w-[450px] max-[640px]:w-[300px] bg-[#d1daddcb] flex justify-center p-[20px] max-[640px]:p-[10px] rounded-[20px]">
-          <Message actionFn={getValueMessage} />
+          <MessageForm actionFn={getValueMessage} isLoading={isLoading} isDone={isDone}/>
         </div>
         <div className="w-full flex flex-col min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:90%_100%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:95%_100%] max-[1024px]:[animation-timeline:scroll(root)]">
           <h1 className="text-center text-[30px] font-bold tracking-[10px] text-nowrap uppercase">contact me</h1>

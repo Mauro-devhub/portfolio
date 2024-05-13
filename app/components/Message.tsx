@@ -1,46 +1,91 @@
 'use client';
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { BiMailSend } from "react-icons/bi";
+import { EmailDto } from "../context/service-email.context";
+import { Button } from "./Button";
 
 export class MessageProps {
-  actionFn!: ({name, email, message}: {[key: string]: string}) => void;
-}
+  isLoading!: boolean;
+  isDone?: boolean;
+  actionFn!: (emailDto: EmailDto) => void;
+};
 
-export const Message = ({actionFn}: MessageProps) => {
+export const MessageForm = ({actionFn, isLoading, isDone = false}: MessageProps): React.ReactNode => {
 
-  const [nameValue, setNameValue] = useState('');
-  const [emailValue, setEmailValue] = useState('');
-  const [messageValue, setMessageValue] = useState('');
+  const [nameValue, setNameValue] = useState<string>('');
+  const [emailValue, setEmailValue] = useState<string>('');
+  const [messageValue, setMessageValue] = useState<string>('');
+  const [isWrongEmail, setIsWrongEmail] = useState<boolean>(false);
+  const [isValidMessage, setIsInvalidMessage] = useState<boolean>(false);
 
-  const message = {
+  const onChangeNameValue = (name: any): void => {
+    setNameValue(name.target.value);
+  };
+
+  const onChangeEmailValue = (email: any): void => {
+    setEmailValue(email.target.value);
+  };
+
+  const onChangeMessageValue = (message: any): void => {
+    setMessageValue(message.target.value);
+  };
+
+  const control: EmailDto = {
     name: nameValue,
     email: emailValue,
     message: messageValue
-  }
+  };
 
-  const onChangeNameValue = (name: any) => {
-    setNameValue(name.target.value);
-  }
+  const validateForm = () => {
+    if (emailValue.includes('@')) {
+      const email = emailValue.split('@');
+      if (email[1].includes('.')) {
+        setIsWrongEmail(false);
+      } else {
+        setIsWrongEmail(true);
+      }
+    } else {
+      setIsWrongEmail(true);
+    }
 
-  const onChangeEmailValue = (email: any) => {
-    setEmailValue(email.target.value);
-  }
+    if (messageValue.length >= 10) {
+      setIsInvalidMessage(false);
+    } else {
+      setIsInvalidMessage(true);
+    }
 
-  const onChangeMessageValue = (message: any) => {
-    setMessageValue(message.target.value);
+    if (!isWrongEmail && !isValidMessage) {
+      actionFn(control);
+    }
   }
 
   return (
     <section className="flex flex-col w-[360px] gap-[10px]">
       <div className="flex flex-col items-center gap-[10px]">
         <input value={nameValue} type="text" placeholder="Name" onChange={onChangeNameValue} className="h-[30px] w-[420px] max-[640px]:w-[200px] max-[640px]:p-[10px] p-[20px] resize-none rounded-[10px] outline-none hover:shadow-[0_5px_30px_5px_rgba(0,0,0,0.3)] duration-[1s]" />
-        <input value={emailValue} type="text" placeholder="Email" onChange={onChangeEmailValue} className="h-[30px] w-[420px] max-[640px]:w-[200px] max-[640px]:p-[10px] p-[20px] resize-none rounded-[10px] outline-none hover:shadow-[0_5px_30px_5px_rgba(0,0,0,0.3)] duration-[1s]" />
-        <textarea value={messageValue} placeholder="Message" onChange={onChangeMessageValue} className="h-[130px] w-[420px] max-[640px]:w-[200px] max-[640px]:p-[10px] p-[20px] resize-none rounded-[10px] outline-none hover:shadow-[0_5px_30px_5px_rgba(0,0,0,0.3)] duration-[1s]" />
-        <button onClick={() => actionFn({name: message.name, email: message.email, message: message.message})} className="overflow-hidden uppercase bg-[#071630] text-[white] text-[12px] h-[30px] w-[50px] p-[5px] rounded-[20px] hover:w-[90px] duration-[1s] relative">
-          <BiMailSend className="animate-[sendEmail_1.5s_ease-in-out_infinite] transition-transform duration-300" size={25} />
-        </button>
+        <input value={emailValue} type="text" placeholder="Email*" onChange={onChangeEmailValue} className="h-[30px] w-[420px] max-[640px]:w-[200px] max-[640px]:p-[10px] p-[20px] resize-none rounded-[10px] outline-none hover:shadow-[0_5px_30px_5px_rgba(0,0,0,0.3)] duration-[1s]" />
+        {
+          isWrongEmail ?
+          <span className="text-[12px] text-[#ff6061]">Email is not valid, please introduce an email valid</span> :
+          <></>
+        }
+        <textarea value={messageValue} placeholder="Message*" onChange={onChangeMessageValue} className="h-[130px] w-[420px] max-[640px]:w-[200px] max-[640px]:p-[10px] p-[20px] resize-none rounded-[10px] outline-none hover:shadow-[0_5px_30px_5px_rgba(0,0,0,0.3)] duration-[1s]" />
+        {
+          isValidMessage ?
+          <span className="text-[12px] text-[#ff6061]">Introduce more than 10 characters to message valid</span> :
+          <></>
+        }
+        <Button
+          isLoading={isLoading}
+          isDone={isDone}
+          onClick={() => {
+            validateForm();
+          }}
+        >
+          <BiMailSend size={25} />
+        </Button>
       </div>
     </section>
-  )
-}
+  );
+};
