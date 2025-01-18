@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiMailSend } from "react-icons/bi";
 import { EmailDto } from "../context/service-email.context";
 import { Button } from "./Button";
@@ -62,6 +62,12 @@ export const MessageForm = ({actionFn, isLoading, isDone = false}: MessageProps)
       actionFn(null);
     }
   }
+
+  useEffect(() => {
+    setNameValue('');
+    setEmailValue('');
+    setMessageValue('');
+  }, [isDone])
 
   return (
     <section className="flex flex-col w-[360px] gap-[10px]">

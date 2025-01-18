@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FaGitAlt, FaGithub, FaInstagram, FaLink, FaLinkedinIn, FaReact, FaStar } from "react-icons/fa6";
 import { IoLogoAngular, IoPersonSharp } from "react-icons/io5";
 import { SiCss3, SiHtml5, SiIonic, SiJavascript, SiNextdotjs, SiNgrx, SiRedux, SiSass, SiTailwindcss, SiTypescript } from "react-icons/si";
-import { BiSolidMobileVibration } from "react-icons/bi";
+import { BiBarChartAlt2, BiSolidMobileVibration } from "react-icons/bi";
 import { PiDeviceTabletFill } from "react-icons/pi";
 import { MdWeb } from "react-icons/md";
 import { TbMessage2 } from "react-icons/tb";
@@ -92,6 +92,21 @@ export default function PageHome(): React.ReactNode {
     <SiTailwindcss key={0} color="#1E40AF" size={25}/>,
     <SiCss3 key={0} color="#1572B6" size={25}/>,
     <SiSass key={0} color="#CC6699" size={25} />
+  ]
+
+  const experienceList: {nameCompany: string, position: string, details: React.ReactNode, linkCompany: string}[] = [
+    {
+      nameCompany: 'Guilts',
+      position: 'Full Stack Developer',
+      details: (<>My main role in this company is implement new views to the projects, increment code quality implementing strategies like principle SOLID replace old code with the objetive to increment performance and make test to the components using jasmine all those things with angular and I have used ionic to implement components UI. <br/><br/> I work implement APIRestFull with framework for backend Nest js, PostgreSql for database, and docker to create containers for databases in the serve and test aplications before send to production.</>),
+      linkCompany: 'https://www.linkedin.com/company/guilts/'
+    },
+    {
+      nameCompany: 'Flatiron Software co',
+      position: 'Full Stack Developer',
+      details: (<>My role here was refactoring old code and fixing bugs in the platform to increase performance, such as overwriting components and making them smaller, implementing atomic design, implementing the open-close principle and interface segregation principle on both the frontend and backend. <br/><br/> For me, a component can not exceed 500 lines of code because they all become more complex and bugs appear, I was implementing the strategy happy-code this is make your code the more easy possible to other developers can understand with easily the code of the project and establish a format how write code in project</>),
+      linkCompany: 'https://www.linkedin.com/company/flatironsoftware/posts/?feedView=all'
+    }
   ]
 
   const openWindowUrl = (url: string): void => {
@@ -182,6 +197,13 @@ export default function PageHome(): React.ReactNode {
             size={25} />
         </Link>
         <hr className="bg-[black] rotate-[90deg] w-[20px]" />
+        <Link href="#experience">
+          <BiBarChartAlt2
+            className="text-[#c4c4c4] hover:text-[#1f224f]"
+            cursor='pointer'
+            size={25} />
+        </Link>
+        <hr className="bg-[black] rotate-[90deg] w-[20px]" />
         <Link href="#contact_me">
           <GrContact
             className="text-[#c4c4c4] hover:text-[#1f224f]"
@@ -211,7 +233,7 @@ export default function PageHome(): React.ReactNode {
             <div>
               <hr />
               <p className="font-medium text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
-                I started on this journey before attending university, but I didn’t know I’d like to code this much. I’m passionate about technologies to convert ideas into resilient and scalable web apps with good practices and more than <strong>3 years of experience</strong>, always focusing on new technologies.
+                I started on this journey before attending university, but I didn’t know I’d like to code this much. I’m passionate about technologies to convert ideas into resilient and scalable web apps with good practices and more than <strong>4 years of experience</strong>, always focusing on new technologies.
               </p>
             </div>
             <div className="flex flex-col gap-[20px]">
@@ -252,7 +274,7 @@ export default function PageHome(): React.ReactNode {
 
   const projects = (): React.ReactNode => {
     return (
-      <div id="projects" className="w-full text-center flex flex-col justify-center gap-[15px]">
+      <div id="projects" className="w-full text-center flex flex-col justify-center gap-[15px] mb-3">
         <section className="mt-[50px] flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse max-[1390px]:flex-col-reverse max-[1390px]:gap-[40px] items-center gap-[80px]">
           <CardProject imgSrcList={imgListOscarsPool} classNameAnimation="max-[465px]:p-[10px] animate-showElementTransitionRightToLeft min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:19%_30%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_40%] max-[1024px]:[animation-timeline:scroll(root)]"/>
 
@@ -281,14 +303,42 @@ export default function PageHome(): React.ReactNode {
                 <FaLink onClick={() => openWindowUrl(LINK_URLS.spazzioUrl)} className="hover:text-blue-500" cursor='pointer' size={20} />
               </div>
               <hr className="mb-[20px]"/>
-              <p className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
+              <p id="experience" className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
                 Spazzio enhances residents’ experience by providing tools to efficiently reserve, report and manage the financial aspects of their condominium.
               </p>
             </div>
           </div>
         </section>
-        {peopleSayContent()}
       </div>
+    )
+  }
+
+  const experience = (): React.ReactNode => {
+    return (
+      <>
+        <div className="w-full min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:50%_75%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:75%_95%] max-[1024px]:[animation-timeline:scroll(root)]">
+          <h1 className="text-center text-[30px] font-bold tracking-[10px] uppercase">Experience</h1>
+          <div className="h-full flex flex-col py-[10px]">
+            {experienceList.map((e, i) => {
+              return (
+                <ul key={i} className="flex flex-col justify-center items-center gap-2">
+                  <div className="flex justify-center items-center gap-1">
+                    <h3 className="font-bold uppercase">{e.nameCompany}</h3>
+                    <FaLink onClick={() => openWindowUrl(LINK_URLS.oscarsPoolUrl)} className="hover:text-blue-500" cursor='pointer' size={20} />
+                  </div>
+                  <div className="h-10 border-l-2 border-solid border-l-[#1f224f]"/>
+                  <h3 className="font-semibold" >{e.position}</h3>
+                  <div className="h-10 border-l-2 border-solid border-l-[#1f224f]"/>
+                  <section className="bg-[#d1daddcb] rounded-[20px] h-auto w-[600px] flex flex-col justify-center p-[20px] hover:shadow-[0_10px_20px_1px_rgba(0,0,0,0.3)] duration-[1s] overflow-hidden animate-showElementTransitionRightToLeft">
+                    <p>{e.details}</p>
+                  </section>
+                  {i == experienceList.length - 1 ? <></> : <div className="h-10 border-l-2 border-solid border-l-[#1f224f]"/>}
+                </ul>
+              )
+            })}
+          </div>
+        </div>
+      </>
     )
   }
 
@@ -333,11 +383,13 @@ export default function PageHome(): React.ReactNode {
         {aboutMe()}
         {skills()}
         {projects()}
+        {experience()}
+        {peopleSayContent()}
         {contactMe()}
         {Number(scrollPosition) > 98 || Number(widthScreen) < 640 ? optionFloatMenuTemporally() : <></>}
       </main>
       <footer className="m-[10px] flex justify-center items-center flex-wrap">
-        <h1>© 2023 Copyrights. dsmauricio16@gmail.com</h1>
+        <h1>© 2025 Copyrights. dsmauricio16@gmail.com</h1>
       </footer>
     </section>
   )
