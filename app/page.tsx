@@ -65,16 +65,18 @@ export default function PageHome(): React.ReactNode {
     }
   }
 
-  const peoples: {fullName: string, organization: string, comment: string}[] = [
+  const peoples: {fullName: string, imgUrl: string, organization: string, comment: string}[] = [
     {
       fullName: 'Ricardo Caicedo',
+      imgUrl: '/ricardo.jpeg',
       organization: 'CEO Guilt\'s',
-      comment: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam minima rerum eveniet aliquid quae enim, quos ex dolores, blanditiis, tempore incidunt quidem reiciendis. Ipsum saepe quia sit tempora. Qui, rerum!'
+      comment: 'Su capacidad para abordar desafíos complejos con soluciones eficientes para mejorar nuestros productos implementando el desarrollo de código limpio y bien estructurado para optimizar el rendimiento y anticipar problemas antes de que se conviertan en obstáculos han sido clave en nuestros productos.'
     },
     {
       fullName: 'Rachell Sánchez',
+      imgUrl: '/rachell.jpeg',
       organization: 'SCRUM MASTER',
-      comment: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam minima rerum eveniet aliquid quae enim, quos ex dolores, blanditiis, tempore incidunt quidem reiciendis. Ipsum saepe quia sit tempora. Qui, rerum!'
+      comment: 'Su habilidad para adaptarse rápidamente a los cambios y colaborar eficazmente con el equipo ha sido fundamental para el progreso de nuestros sprints, manteniendo una comunicación clara y aportando soluciones innovadoras a los desafíos que enfrentamos.'
     }
   ]
 
@@ -113,13 +115,13 @@ export default function PageHome(): React.ReactNode {
     window.open(url, '_blank');
   }
 
-  const peopleSay = (people: {fullName: string, organization: string, comment: string, key: number}): React.ReactNode => {
+  const peopleSay = (people: {fullName: string, imgUrl: string, organization: string, comment: string, key: number}): React.ReactNode => {
     return (
-      <section key={people.key} className="bg-[#d1daddcb] rounded-[20px] h-[200px] w-[300px] flex flex-col justify-center p-[20px] gap-[10px] hover:shadow-[0_10px_20px_1px_rgba(0,0,0,0.3)] duration-[1s] cursor-pointer overflow-hidden animate-showElementTransitionRightToLeft">
+      <section key={people.key} className="bg-[#d1daddcb] rounded-[20px] h-[200px] w-[300px] flex flex-col p-[20px] gap-[10px] hover:shadow-[0_10px_20px_1px_rgba(0,0,0,0.3)] duration-[1s] cursor-pointer overflow-hidden animate-showElementTransitionRightToLeft">
         <div className="flex items-center gap-[10px] text-[10px] text-left font-semibold">
           <Image
             className="rounded-[40px] border-[1px] border-[#1f224f] p-[3px] object-cover cursor-pointer"
-            src='/mauricio.JPG'
+            src={people.imgUrl}
             height={35}
             width={35}
             alt="user" />
@@ -344,13 +346,13 @@ export default function PageHome(): React.ReactNode {
 
   const peopleSayContent = (): React.ReactNode => {
     return (
-      <section id="people_say" className="flex flex-col gap-[10px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:50%_75%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:75%_95%] max-[1024px]:[animation-timeline:scroll(root)]">
+      <section id="people_say" className="h-auto flex flex-col gap-[10px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:50%_75%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:75%_95%] max-[1024px]:[animation-timeline:scroll(root)]">
         <h1 className="text-center text-[25px] font-semibold pr-[10px]">People Say</h1>
         <hr />
         <div className="flex flex-wrap gap-[10px] justify-center">
           {peoples.map((people, i) => {
-            const { fullName, organization, comment } = people;
-            return peopleSay({fullName, organization, comment, key: i});
+            const { fullName, imgUrl, organization, comment } = people;
+            return peopleSay({fullName, imgUrl, organization, comment, key: i});
           })}
         </div>
       </section>
