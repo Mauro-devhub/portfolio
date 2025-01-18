@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiMailSend } from "react-icons/bi";
 import { EmailDto } from "../context/service-email.context";
 import { Button } from "./Button";
@@ -8,7 +8,7 @@ import { Button } from "./Button";
 export class MessageProps {
   isLoading!: boolean;
   isDone?: boolean;
-  actionFn!: (emailDto: EmailDto) => void;
+  actionFn!: (emailDto: EmailDto | null) => void | null;
 };
 
 export const MessageForm = ({actionFn, isLoading, isDone = false}: MessageProps): React.ReactNode => {
@@ -24,10 +24,16 @@ export const MessageForm = ({actionFn, isLoading, isDone = false}: MessageProps)
   };
 
   const onChangeEmailValue = (email: any): void => {
+    if (isWrongEmail && emailValue.includes('@') && emailValue.split('@')[1].includes('.')) {
+      setIsWrongEmail(false);
+    }
     setEmailValue(email.target.value);
   };
 
   const onChangeMessageValue = (message: any): void => {
+    if (isValidMessage && messageValue.length >= 10) {
+      setIsInvalidMessage(false);
+    }
     setMessageValue(message.target.value);
   };
 
@@ -38,13 +44,8 @@ export const MessageForm = ({actionFn, isLoading, isDone = false}: MessageProps)
   };
 
   const validateForm = () => {
-    if (emailValue.includes('@')) {
-      const email = emailValue.split('@');
-      if (email[1].includes('.')) {
-        setIsWrongEmail(false);
-      } else {
-        setIsWrongEmail(true);
-      }
+    if (emailValue.includes('@') && emailValue.split('@')[1].includes('.')) {
+      setIsWrongEmail(false);
     } else {
       setIsWrongEmail(true);
     }
@@ -56,9 +57,17 @@ export const MessageForm = ({actionFn, isLoading, isDone = false}: MessageProps)
     }
 
     if (!isWrongEmail && !isValidMessage) {
-      actionFn(control);
+      actionFn(Object.values(control).every(a => a.length <= 0) ? null : control);
+    } else {
+      actionFn(null);
     }
   }
+
+  useEffect(() => {
+    setNameValue('');
+    setEmailValue('');
+    setMessageValue('');
+  }, [isDone])
 
   return (
     <section className="flex flex-col w-[360px] gap-[10px]">

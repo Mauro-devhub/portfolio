@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { BiBarChartAlt2 } from "react-icons/bi";
 import { GoProjectSymlink } from "react-icons/go";
 import { GrContact } from "react-icons/gr";
 import { IoPersonSharp } from "react-icons/io5";
@@ -28,6 +29,11 @@ export const Menu = (): React.ReactNode => {
       option: 'Projects',
       link: '#projects',
       icon: <GoProjectSymlink className="text-[#c4c4c4] hover:text-[#1f224f]" cursor='pointer' size={20} />
+    },
+    {
+      option: 'Experience',
+      link: '#experience',
+      icon: <BiBarChartAlt2 className="text-[#c4c4c4] hover:text-[#1f224f]" cursor='pointer' size={20}/>
     },
     {
       option: 'Contact me',

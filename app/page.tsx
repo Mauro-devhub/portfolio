@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { FaGitAlt, FaGithub, FaInstagram, FaLink, FaLinkedinIn, FaReact, FaStar } from "react-icons/fa6";
 import { IoLogoAngular, IoPersonSharp } from "react-icons/io5";
-import { SiCss3, SiHtml5, SiIonic, SiJavascript, SiNextdotjs, SiRedux, SiSass, SiTailwindcss, SiTypescript } from "react-icons/si";
-import { BiSolidMobileVibration } from "react-icons/bi";
+import { SiCss3, SiHtml5, SiIonic, SiJavascript, SiNextdotjs, SiNgrx, SiRedux, SiSass, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { BiBarChartAlt2, BiSolidMobileVibration } from "react-icons/bi";
 import { PiDeviceTabletFill } from "react-icons/pi";
 import { MdWeb } from "react-icons/md";
 import { TbMessage2 } from "react-icons/tb";
@@ -19,6 +19,7 @@ import { Header } from "./components/Header";
 import { LINK_URLS } from "./constans/url.constants";
 import React, { useContext, useEffect, useState } from "react";
 import { EmailContext, EmailDto } from "./context/service-email.context";
+import { CardProject } from "./components/CardProject";
 
 export default function PageHome(): React.ReactNode {
 
@@ -28,6 +29,9 @@ export default function PageHome(): React.ReactNode {
   const emailContext = useContext(EmailContext);
   const [isLoading, setIsLoading] = useState(false);
   const [isDone, setIsdone] = useState(false);
+
+  const imgListSpazzio: string[] = ['/spazzio-desktop.png', '/spazzio-mobile.PNG', '/spazzio-area.png', '/spazzio-mobile-opts.PNG'];
+  const imgListOscarsPool: string[] = ['/oscars-desktop.png', '/mobile-groups.jpg', '/desktop-predictions.png', '/mobile-predictions.png'];
 
   useEffect(() => {
     window.addEventListener('scroll', function() {
@@ -41,22 +45,24 @@ export default function PageHome(): React.ReactNode {
     })
   }, [scrollPosition, widthScreen]);
 
-  const getValueMessage = (objMessage: EmailDto): void => {
-    setIsLoading(true);
+  const getValueMessage = (objMessage: EmailDto | null): void => {
+    if (objMessage !== null) {
+      setIsLoading(true);
 
-    emailContext.setEmail(objMessage)
-      .then(() => {
-        setIsdone(true);
-        
-        setTimeout(() => {
-          setIsdone(false);
+      emailContext.setEmail(objMessage)
+        .then(() => {
+          setIsdone(true);
+          
+          setTimeout(() => {
+            setIsdone(false);
+            setIsLoading(false);
+          }, 800);
+        })
+        .catch(() => {
           setIsLoading(false);
-        }, 800);
-      })
-      .catch(() => {
-        setIsLoading(false);
-        setIsdone(false);
-      })
+          setIsdone(false);
+        })
+    }
   }
 
   const peoples: {fullName: string, organization: string, comment: string}[] = [
@@ -78,6 +84,7 @@ export default function PageHome(): React.ReactNode {
     <IoLogoAngular key={0} color="#DD0031" size={25}/>,
     <FaReact key={0} color="#61DAFB" size={25}/>,
     <SiIonic key={0} color="#3880ff" size={25}/>,
+    <SiNgrx key={0} color="#9f1c9c" size={25}/>,
     <SiRedux key={0} color="#764ABC" size={25}/>,
     <SiJavascript key={0} color="#F7DF1E" size={25}/>,
     <SiTypescript key={0} color="#007ACC" size={25}/>,
@@ -85,6 +92,21 @@ export default function PageHome(): React.ReactNode {
     <SiTailwindcss key={0} color="#1E40AF" size={25}/>,
     <SiCss3 key={0} color="#1572B6" size={25}/>,
     <SiSass key={0} color="#CC6699" size={25} />
+  ]
+
+  const experienceList: {nameCompany: string, position: string, details: React.ReactNode, linkCompany: string}[] = [
+    {
+      nameCompany: 'Guilts',
+      position: 'Full Stack Developer',
+      details: (<>My main role in this company is implement new views to the projects, increment code quality implementing strategies like principle SOLID replace old code with the objetive to increment performance and make test to the components using jasmine all those things with angular and I have used ionic to implement components UI. <br/><br/> I work implement APIRestFull with framework for backend Nest js, PostgreSql for database, and docker to create containers for databases in the serve and test aplications before send to production.</>),
+      linkCompany: 'https://www.linkedin.com/company/guilts/'
+    },
+    {
+      nameCompany: 'Flatiron Software co',
+      position: 'Full Stack Developer',
+      details: (<>My role here was refactoring old code and fixing bugs in the platform to increase performance, such as overwriting components and making them smaller, implementing atomic design, implementing the open-close principle and interface segregation principle on both the frontend and backend. <br/><br/> For me, a component can not exceed 500 lines of code because they all become more complex and bugs appear, I was implementing the strategy happy-code this is make your code the more easy possible to other developers can understand with easily the code of the project and establish a format how write code in project</>),
+      linkCompany: 'https://www.linkedin.com/company/flatironsoftware/posts/?feedView=all'
+    }
   ]
 
   const openWindowUrl = (url: string): void => {
@@ -175,6 +197,13 @@ export default function PageHome(): React.ReactNode {
             size={25} />
         </Link>
         <hr className="bg-[black] rotate-[90deg] w-[20px]" />
+        <Link href="#experience">
+          <BiBarChartAlt2
+            className="text-[#c4c4c4] hover:text-[#1f224f]"
+            cursor='pointer'
+            size={25} />
+        </Link>
+        <hr className="bg-[black] rotate-[90deg] w-[20px]" />
         <Link href="#contact_me">
           <GrContact
             className="text-[#c4c4c4] hover:text-[#1f224f]"
@@ -200,16 +229,16 @@ export default function PageHome(): React.ReactNode {
           </div>
 
           <div className="w-[650px] 2xl:w-[605px] max-[1280px]:w-[480px] max-[1024px]:w-full flex flex-col justify-center gap-[20px] animate-showElementTransitionOpacityLeftToRight [animation-range:0_5%] [animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:0_5%] max-[1024px]:[animation-timeline:scroll(root)]">
-            <h1 className="text-right max-[1024px]:text-center text-[30px] font-medium">FrontEnd Developer Jr</h1>
+            <h1 className="text-right max-[1024px]:text-center text-[30px] font-medium">Software Engineer</h1>
             <div>
               <hr />
-              <p className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
-                I started on this journey before attending university, but I didn’t know I’d like to code this much. I’m passionate about technologies to convert ideas into resilient and scalable web apps with good practices and <strong>more than 3 years of experience</strong>, always focusing on new technologies.
+              <p className="font-medium text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
+                I started on this journey before attending university, but I didn’t know I’d like to code this much. I’m passionate about technologies to convert ideas into resilient and scalable web apps with good practices and more than <strong>4 years of experience</strong>, always focusing on new technologies.
               </p>
             </div>
             <div className="flex flex-col gap-[20px]">
-              <h2 className="text-left text-[25px] font-bold pr-[85px]">Tecnologies</h2>
-              <hr />
+              <h2 className="text-left text-[25px] font-semibold pr-[85px]">Tecnologies</h2>
+              <hr id="skills"/>
               <div className="flex flex-wrap gap-[10px] items-center justify-between animate-showElementsTransitionOpacity [animation-range:entry_10%_cover_30%] [animation-timeline:view()]">
                 {listStacksTecnologies.map((icon, i) => {
                   return <span key={i}>{icon}</span>
@@ -224,7 +253,7 @@ export default function PageHome(): React.ReactNode {
 
   const skills = (): React.ReactNode => {
     return (
-      <div id="skills" className="flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse items-center gap-[80px] max-[1280px]:gap-[45px] animate-showElementTransitionOpacityBottomToTop [animation-range:5%_20%] [animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:10%_30%] max-[1024px]:[animation-timeline:scroll(root)]">
+      <div className="flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse items-center gap-[80px] max-[1280px]:gap-[45px] animate-showElementTransitionOpacityBottomToTop [animation-range:5%_20%] [animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:10%_30%] max-[1024px]:[animation-timeline:scroll(root)]">
         <div className="w-[50%] max-[1024px]:w-full animate-showElementTransitionRightToLeft">
           <p className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
             I’m skilled at handling and creating apps, producing user-friendly, comprehensible and accessible interfaces. I always have a user-centric mindset, the easier it is to use the app, the more users will engage, everything while always keeping a business logic centered on maintainability and scalability.
@@ -245,79 +274,10 @@ export default function PageHome(): React.ReactNode {
 
   const projects = (): React.ReactNode => {
     return (
-      <div id="projects" className="w-full text-center flex flex-col justify-center gap-[15px]">
+      <div id="projects" className="w-full text-center flex flex-col justify-center gap-[15px] mb-3">
         <section className="mt-[50px] flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse max-[1390px]:flex-col-reverse max-[1390px]:gap-[40px] items-center gap-[80px]">
-          <div className="bg-[#d1daddcb] max-[465px]:p-[10px] rounded-[20px] p-[20px] flex flex-col justify-center items-center gap-[10px] animate-showElementTransitionRightToLeft  min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:19%_30%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_40%] max-[1024px]:[animation-timeline:scroll(root)]">
-            <div className="flex justify-center items-center gap-[20px] max-[695px]:hidden">
-              <Image className="object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='desktop-image'
-                src='/oscars-desktop.png'
-                width={400}
-                height={400}/>
+          <CardProject imgSrcList={imgListOscarsPool} classNameAnimation="max-[465px]:p-[10px] animate-showElementTransitionRightToLeft min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:19%_30%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_40%] max-[1024px]:[animation-timeline:scroll(root)]"/>
 
-              <Image className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='mobile-image'
-                src='/mobile-groups.jpg'
-                width={100}
-                height={100}/>
-            </div>
-
-            <div className="flex max-[1390px]:flex-row-reverse justify-center items-center gap-[20px] max-[695px]:hidden">
-              <Image
-                className="object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='desktop-image'
-                src='/desktop-predictions.png'
-                width={400}
-                height={400}/>
-
-              <Image
-                className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='mobile-image'
-                src='/mobile-predictions.png'
-                width={100}
-                height={100}/>
-            </div>
-
-            <div className="flex justify-center items-center gap-[20px] min-[695px]:hidden">
-              <Image
-                className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='mobile-image'
-                src='/mobile-predictions.png'
-                width={100}
-                height={100}/>
-
-              <Image
-                className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='mobile-image'
-                src='/mobile-groups.jpg'
-                width={100}
-                height={100}/>
-            </div>
-
-            <div className="flex flex-col justify-center items-center gap-[20px] min-[695px]:hidden">
-              <Image
-                className="max-[640px]:h-[170px] max-[640px]:w-[300px] object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='desktop-image'
-                src='/oscars-desktop.png'
-                width={400}
-                height={400}/>
-
-              <Image
-                className="max-[640px]:h-[170px] max-[640px]:w-[300px] object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='desktop-image'
-                src='/desktop-predictions.png'
-                width={400}
-                height={400}/>
-            </div>
-          </div>
           <div className="w-[50%] max-[1024px]:w-full flex flex-col gap-[20px] animate-showElementTransitionRightToLeft min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:15%_30%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_45%] max-[1024px]:[animation-timeline:scroll(root)]">
             <h1 className="text-center text-[30px] font-bold tracking-[10px] uppercase">projects</h1>
             <div className="flex flex-col items-center max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_40%] max-[1024px]:[animation-timeline:scroll(root)]">
@@ -333,80 +293,9 @@ export default function PageHome(): React.ReactNode {
           </div>
         </section>
 
-        <section className="flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse min-[1393px]:translate-y-[-90px] max-[1390px]:flex-col-reverse min-[1390px]:flex-row-reverse max-[1390px]:gap-[40px] items-center gap-[80px]">
-          <div className="bg-[#d1daddcb] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:35%_50%] min-[1024px]:[animation-timeline:scroll(root)] max-[465px]:p-[10px] rounded-[20px] p-[20px] flex flex-col justify-center items-center gap-[10px] animate-showElementTransitionRightToLeft max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:35%_80%] max-[1024px]:[animation-timeline:scroll(root)]">
-            <div className="flex justify-center items-center gap-[20px] max-[695px]:hidden">
-              <Image
-                className="object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='desktop-image'
-                src='/spazzio-desktop.png'
-                width={400}
-                height={400}/>
-
-              <Image
-                className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='mobile-image'
-                src='/spazzio-mobile.PNG'
-                width={100}
-                height={100}/>
-            </div>
-
-            <div className="flex max-[1390px]:flex-row-reverse justify-center items-center gap-[20px] max-[695px]:hidden">
-              <Image
-                className="object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='desktop-image'
-                src='/spazzio-area.png'
-                width={400}
-                height={400}/>
-
-              <Image
-                className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='mobile-image'
-                src='/spazzio-mobile-opts.PNG'
-                width={100}
-                height={100}/>
-            </div>
-
-            <div className="flex justify-center items-center gap-[20px] min-[695px]:hidden">
-              <Image
-                className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='mobile-image'
-                src='/spazzio-mobile-opts.PNG'
-                width={100}
-                height={100}/>
-
-              <Image
-                className="rounded-[10px] cursor-pointer hover:rotate-[10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='mobile-image'
-                src='/spazzio-mobile.PNG'
-                width={100}
-                height={100}/>
-            </div>
-
-            <div className="flex flex-col justify-center items-center gap-[20px] min-[695px]:hidden">
-              <Image
-                className="max-[640px]:h-[170px] max-[640px]:w-[300px] object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='desktop-image'
-                src='/spazzio-desktop.png'
-                width={400}
-                height={400}/>
-
-              <Image
-                className="max-[640px]:h-[170px] max-[640px]:w-[300px] object-center rounded-[10px] cursor-pointer hover:rotate-[-10deg] hover:shadow-[0_10px_10px_15px_rgba(0,0,0,0.3)] duration-[1s]"
-                objectFit="cover"
-                alt='desktop-image'
-                src='/spazzio-area.png'
-                width={400}
-                height={400}/>
-            </div>
-          </div>
+        <section className="flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse max-[1390px]:flex-col-reverse min-[1390px]:flex-row-reverse max-[1390px]:gap-[40px] items-center gap-[80px]">
+          <CardProject imgSrcList={imgListSpazzio} classNameAnimation="min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:35%_50%] min-[1024px]:[animation-timeline:scroll(root)] max-[465px]:p-[10px] animate-showElementTransitionRightToLeft max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:35%_80%] max-[1024px]:[animation-timeline:scroll(root)]" />
+          
           <div className="w-[50%] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:40%_55%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:w-full flex flex-col gap-[20px] 2xl:translate-y-[20px] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:30%_75%] max-[1024px]:[animation-timeline:scroll(root)]">
             <div className="animate-showElementTransitionLeftToRight">
               <div className="mb-[30px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:45%_55%] min-[1024px]:[animation-timeline:scroll(root)] flex justify-center items-center max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:35%_70%] max-[1024px]:[animation-timeline:scroll(root)]">
@@ -414,21 +303,49 @@ export default function PageHome(): React.ReactNode {
                 <FaLink onClick={() => openWindowUrl(LINK_URLS.spazzioUrl)} className="hover:text-blue-500" cursor='pointer' size={20} />
               </div>
               <hr className="mb-[20px]"/>
-              <p className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
+              <p id="experience" className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
                 Spazzio enhances residents’ experience by providing tools to efficiently reserve, report and manage the financial aspects of their condominium.
               </p>
             </div>
           </div>
         </section>
-        {peopleSayContent()}
       </div>
+    )
+  }
+
+  const experience = (): React.ReactNode => {
+    return (
+      <>
+        <div className="w-full min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:50%_75%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:75%_95%] max-[1024px]:[animation-timeline:scroll(root)]">
+          <h1 className="text-center text-[30px] font-bold tracking-[10px] uppercase">Experience</h1>
+          <div className="h-full flex flex-col py-[10px]">
+            {experienceList.map((e, i) => {
+              return (
+                <ul key={i} className="flex flex-col justify-center items-center gap-2">
+                  <div className="flex justify-center items-center gap-1">
+                    <h3 className="font-bold uppercase">{e.nameCompany}</h3>
+                    <FaLink onClick={() => openWindowUrl(LINK_URLS.oscarsPoolUrl)} className="hover:text-blue-500" cursor='pointer' size={20} />
+                  </div>
+                  <div className="h-10 border-l-2 border-solid border-l-[#1f224f]"/>
+                  <h3 className="font-semibold" >{e.position}</h3>
+                  <div className="h-10 border-l-2 border-solid border-l-[#1f224f]"/>
+                  <section className="bg-[#d1daddcb] rounded-[20px] h-auto w-[600px] flex flex-col justify-center p-[20px] hover:shadow-[0_10px_20px_1px_rgba(0,0,0,0.3)] duration-[1s] overflow-hidden animate-showElementTransitionRightToLeft">
+                    <p>{e.details}</p>
+                  </section>
+                  {i == experienceList.length - 1 ? <></> : <div className="h-10 border-l-2 border-solid border-l-[#1f224f]"/>}
+                </ul>
+              )
+            })}
+          </div>
+        </div>
+      </>
     )
   }
 
   const peopleSayContent = (): React.ReactNode => {
     return (
       <section id="people_say" className="flex flex-col gap-[10px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:50%_75%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:75%_95%] max-[1024px]:[animation-timeline:scroll(root)]">
-        <h1 className="text-center text-[25px] font-bold pr-[10px]">People Say</h1>
+        <h1 className="text-center text-[25px] font-semibold pr-[10px]">People Say</h1>
         <hr />
         <div className="flex flex-wrap gap-[10px] justify-center">
           {peoples.map((people, i) => {
@@ -447,7 +364,7 @@ export default function PageHome(): React.ReactNode {
           <MessageForm actionFn={getValueMessage} isLoading={isLoading} isDone={isDone}/>
         </div>
         <div className="w-full flex flex-col min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:90%_100%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:95%_100%] max-[1024px]:[animation-timeline:scroll(root)]">
-          <h1 className="text-center text-[30px] font-bold tracking-[10px] text-nowrap uppercase">contact me</h1>
+          <h1 className="text-center text-[30px] font-semibold tracking-[10px] text-nowrap uppercase">contact me</h1>
           <div className="flex justify-center items-center">
             <ul className="list-disc ml-2 text-gray-light">
               <li className="leading-7 font-semibold text-nowrap text-[18px]">Send me a message</li>
@@ -466,11 +383,13 @@ export default function PageHome(): React.ReactNode {
         {aboutMe()}
         {skills()}
         {projects()}
+        {experience()}
+        {peopleSayContent()}
         {contactMe()}
         {Number(scrollPosition) > 98 || Number(widthScreen) < 640 ? optionFloatMenuTemporally() : <></>}
       </main>
       <footer className="m-[10px] flex justify-center items-center flex-wrap">
-        <h1>© 2023 Copyrights. dsmauricio16@gmail.com</h1>
+        <h1>© 2025 Copyrights. dsmauricio16@gmail.com</h1>
       </footer>
     </section>
   )
