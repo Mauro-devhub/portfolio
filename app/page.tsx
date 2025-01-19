@@ -65,18 +65,20 @@ export default function PageHome(): React.ReactNode {
     }
   }
 
-  const peoples: {fullName: string, imgUrl: string, organization: string, comment: string}[] = [
+  const peoples: {fullName: string, imgUrl: string, userLink: string, organization: string, comment: string}[] = [
     {
       fullName: 'Ricardo Caicedo',
       imgUrl: '/ricardo.jpeg',
+      userLink: '',
       organization: 'CEO Guilt\'s',
-      comment: 'Su capacidad para abordar desafíos complejos con soluciones eficientes para mejorar nuestros productos implementando el desarrollo de código limpio y bien estructurado para optimizar el rendimiento y anticipar problemas antes de que se conviertan en obstáculos han sido clave en nuestros productos.'
+      comment: 'Their ability to address complex challenges with efficient solutions to improve our products by implementing clean and well-structured code development to optimize performance and anticipate problems before they become obstacles has been key in our products.'
     },
     {
       fullName: 'Rachell Sánchez',
       imgUrl: '/rachell.jpeg',
+      userLink: 'https://www.linkedin.com/in/rachell-sanchez/',
       organization: 'SCRUM MASTER',
-      comment: 'Su habilidad para adaptarse rápidamente a los cambios y colaborar eficazmente con el equipo ha sido fundamental para el progreso de nuestros sprints, manteniendo una comunicación clara y aportando soluciones innovadoras a los desafíos que enfrentamos.'
+      comment: 'His ability to quickly adapt to changes and collaborate effectively with the team has been instrumental in the progress of our sprints, maintaining clear communication and providing innovative solutions to the challenges we face.'
     }
   ]
 
@@ -115,11 +117,12 @@ export default function PageHome(): React.ReactNode {
     window.open(url, '_blank');
   }
 
-  const peopleSay = (people: {fullName: string, imgUrl: string, organization: string, comment: string, key: number}): React.ReactNode => {
+  const peopleSay = (people: {fullName: string, imgUrl: string, userLink: string, organization: string, comment: string, key: number}): React.ReactNode => {
     return (
-      <section key={people.key} className="bg-[#d1daddcb] rounded-[20px] h-[200px] w-[300px] flex flex-col p-[20px] gap-[10px] hover:shadow-[0_10px_20px_1px_rgba(0,0,0,0.3)] duration-[1s] cursor-pointer overflow-hidden animate-showElementTransitionRightToLeft">
+      <section key={people.key} className="bg-[#d1daddcb] rounded-[20px] h-[200px] w-[300px] flex flex-col p-[20px] gap-[10px] hover:shadow-[0_10px_20px_1px_rgba(0,0,0,0.3)] duration-[1s] overflow-hidden animate-showElementTransitionRightToLeft">
         <div className="flex items-center gap-[10px] text-[10px] text-left font-semibold">
           <Image
+            onClick={() => openWindowUrl(people.userLink)}
             className="rounded-[40px] border-[1px] border-[#1f224f] p-[3px] object-cover cursor-pointer"
             src={people.imgUrl}
             height={35}
@@ -220,7 +223,7 @@ export default function PageHome(): React.ReactNode {
     return (
       <div id="about_me" className="w-full flex 2xl:flex-nowrap max-[1024px]:flex-col items-center py-[30px] gap-[80px]">
         <div className="w-[100%] max-[1024px]:w-full flex items-center max-[1024px]:flex-col">
-          <div className="max-[1024px]:flex max-[1024px]:justify-center rounded-[300px] overflow-hidden animate-showElementTransitionRightToLeft [animation-range:0_5%] [animation-timeline:scroll(root)] max-[1024px]:animate-none">
+          <div className="max-[1024px]:flex max-[1024px]:justify-center rounded-[300px] overflow-hidden animate-showElementTransitionRightToLeft [animation-range:0_3%] [animation-timeline:scroll(root)] max-[1024px]:animate-none">
             <Image
               className="2xl:h-[500px] 2xl:w-[500px] xl:h-[450px] xl:w-[450px] lg:h-[400px] lg:w-[400px] md:h-[400px] md:w-[400px] max-[768px]:h-[300px] max-[768px]:w-[300px] max-[640px]:h-[200px] max-[640px]:w-[200px] rounded-[300px] object-cover h-[475px] overflow-hidden cursor-pointer animate-showElementsTransitionOpacity"
               src='/mauricio.JPG'
@@ -230,7 +233,7 @@ export default function PageHome(): React.ReactNode {
             />
           </div>
 
-          <div className="w-[650px] 2xl:w-[605px] max-[1280px]:w-[480px] max-[1024px]:w-full flex flex-col justify-center gap-[20px] animate-showElementTransitionOpacityLeftToRight [animation-range:0_5%] [animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:0_5%] max-[1024px]:[animation-timeline:scroll(root)]">
+          <div className="w-[650px] 2xl:w-[605px] max-[1280px]:w-[480px] max-[1024px]:w-full flex flex-col justify-center gap-[20px] animate-showElementTransitionOpacityLeftToRight [animation-range:0_3%] [animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:0_5%] max-[1024px]:[animation-timeline:scroll(root)]">
             <h1 className="text-right max-[1024px]:text-center text-[30px] font-medium">Software Engineer</h1>
             <div>
               <hr />
@@ -255,14 +258,14 @@ export default function PageHome(): React.ReactNode {
 
   const skills = (): React.ReactNode => {
     return (
-      <div className="flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse items-center gap-[80px] max-[1280px]:gap-[45px] animate-showElementTransitionOpacityBottomToTop [animation-range:5%_20%] [animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:10%_30%] max-[1024px]:[animation-timeline:scroll(root)]">
+      <div className="flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse items-center gap-[80px] max-[1280px]:gap-[45px] animate-showElementTransitionOpacityBottomToTop [animation-range:0%_10%] [animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:10%_30%] max-[1024px]:[animation-timeline:scroll(root)]">
         <div className="w-[50%] max-[1024px]:w-full animate-showElementTransitionRightToLeft">
           <p className="font-semibold text-wrap text-[18px] text-justify xl:leading-5 2xl:leading-7">
             I’m skilled at handling and creating apps, producing user-friendly, comprehensible and accessible interfaces. I always have a user-centric mindset, the easier it is to use the app, the more users will engage, everything while always keeping a business logic centered on maintainability and scalability.
           </p>
         </div>
         <div className="w-[50%] max-[640px]:w-full flex flex-col justify-center items-center gap-[20px] animate-showElementTransitionLeftToRight">
-          <h1 className="text-center text-[30px] font-medium tracking-[10px] uppercase min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:10%_25%] min-[1024px]:[animation-timeline:scroll(root)]">skills</h1>
+          <h1 className="text-center text-[30px] font-medium tracking-[10px] uppercase min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:0%_10%] min-[1024px]:[animation-timeline:scroll(root)]">skills</h1>
           <hr className="w-full" />
           <div className="h-[60px] w-full flex flex-wrap justify-around items-center">
             <BiSolidMobileVibration className="animate-circle" size={30} />
@@ -278,12 +281,12 @@ export default function PageHome(): React.ReactNode {
     return (
       <div id="projects" className="w-full text-center flex flex-col justify-center gap-[15px] mb-3">
         <section className="mt-[50px] flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse max-[1390px]:flex-col-reverse max-[1390px]:gap-[40px] items-center gap-[80px]">
-          <CardProject imgSrcList={imgListOscarsPool} classNameAnimation="max-[465px]:p-[10px] animate-showElementTransitionRightToLeft min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:19%_30%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_40%] max-[1024px]:[animation-timeline:scroll(root)]"/>
+          <CardProject imgSrcList={imgListOscarsPool} classNameAnimation="max-[465px]:p-[10px] animate-showElementTransitionRightToLeft min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:0%_25%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_40%] max-[1024px]:[animation-timeline:scroll(root)]"/>
 
-          <div className="w-[50%] max-[1024px]:w-full flex flex-col gap-[20px] animate-showElementTransitionRightToLeft min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:15%_30%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_45%] max-[1024px]:[animation-timeline:scroll(root)]">
+          <div className="w-[50%] max-[1024px]:w-full flex flex-col gap-[20px] animate-showElementTransitionRightToLeft min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:0%_30%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_45%] max-[1024px]:[animation-timeline:scroll(root)]">
             <h1 className="text-center text-[30px] font-bold tracking-[10px] uppercase">projects</h1>
             <div className="flex flex-col items-center max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:25%_40%] max-[1024px]:[animation-timeline:scroll(root)]">
-              <div className="flex items-center min-[1024px]:mb-[30px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:20%_35%] min-[1024px]:[animation-timeline:scroll(root)]">
+              <div className="flex items-center min-[1024px]:mb-[30px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:0%_25%] min-[1024px]:[animation-timeline:scroll(root)]">
                 <h1 className="text-center text-[25px] font-bold pr-[10px]">Oscars <span className="text-[#d1ab5d]">Pool</span></h1>
                 <FaLink onClick={() => openWindowUrl(LINK_URLS.oscarsPoolUrl)} className="hover:text-blue-500" cursor='pointer' size={20} />
               </div>
@@ -296,11 +299,11 @@ export default function PageHome(): React.ReactNode {
         </section>
 
         <section className="flex 2xl:flex-nowrap max-[1024px]:flex-col-reverse max-[1390px]:flex-col-reverse min-[1390px]:flex-row-reverse max-[1390px]:gap-[40px] items-center gap-[80px]">
-          <CardProject imgSrcList={imgListSpazzio} classNameAnimation="min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:35%_50%] min-[1024px]:[animation-timeline:scroll(root)] max-[465px]:p-[10px] animate-showElementTransitionRightToLeft max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:35%_80%] max-[1024px]:[animation-timeline:scroll(root)]" />
+          <CardProject imgSrcList={imgListSpazzio} classNameAnimation="min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:0%_45%] min-[1024px]:[animation-timeline:scroll(root)] max-[465px]:p-[10px] animate-showElementTransitionRightToLeft max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:35%_80%] max-[1024px]:[animation-timeline:scroll(root)]" />
           
-          <div className="w-[50%] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:40%_55%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:w-full flex flex-col gap-[20px] 2xl:translate-y-[20px] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:30%_75%] max-[1024px]:[animation-timeline:scroll(root)]">
+          <div className="w-[50%] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:0%_45%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:w-full flex flex-col gap-[20px] 2xl:translate-y-[20px] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:30%_75%] max-[1024px]:[animation-timeline:scroll(root)]">
             <div className="animate-showElementTransitionLeftToRight">
-              <div className="mb-[30px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:45%_55%] min-[1024px]:[animation-timeline:scroll(root)] flex justify-center items-center max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:35%_70%] max-[1024px]:[animation-timeline:scroll(root)]">
+              <div className="mb-[30px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:10%_45%] min-[1024px]:[animation-timeline:scroll(root)] flex justify-center items-center max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:35%_70%] max-[1024px]:[animation-timeline:scroll(root)]">
                 <h1 className="text-center text-[25px] font-bold pr-[10px]">Sp<span className="text-[#295A95]">a</span>zzio</h1>
                 <FaLink onClick={() => openWindowUrl(LINK_URLS.spazzioUrl)} className="hover:text-blue-500" cursor='pointer' size={20} />
               </div>
@@ -318,7 +321,7 @@ export default function PageHome(): React.ReactNode {
   const experience = (): React.ReactNode => {
     return (
       <>
-        <div className="w-full min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:50%_75%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:75%_95%] max-[1024px]:[animation-timeline:scroll(root)]">
+        <div className="w-full min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:45%_65%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:75%_95%] max-[1024px]:[animation-timeline:scroll(root)]">
           <h1 className="text-center text-[30px] font-bold tracking-[10px] uppercase">Experience</h1>
           <div className="h-full flex flex-col py-[10px]">
             {experienceList.map((e, i) => {
@@ -326,7 +329,7 @@ export default function PageHome(): React.ReactNode {
                 <ul key={i} className="flex flex-col justify-center items-center gap-2">
                   <div className="flex justify-center items-center gap-1">
                     <h3 className="font-bold uppercase">{e.nameCompany}</h3>
-                    <FaLink onClick={() => openWindowUrl(LINK_URLS.oscarsPoolUrl)} className="hover:text-blue-500" cursor='pointer' size={20} />
+                    <FaLink onClick={() => openWindowUrl(e.linkCompany)} className="hover:text-blue-500" cursor='pointer' size={20} />
                   </div>
                   <div className="h-10 border-l-2 border-solid border-l-[#1f224f]"/>
                   <h3 className="font-semibold" >{e.position}</h3>
@@ -346,13 +349,13 @@ export default function PageHome(): React.ReactNode {
 
   const peopleSayContent = (): React.ReactNode => {
     return (
-      <section id="people_say" className="h-auto flex flex-col gap-[10px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:50%_75%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:75%_95%] max-[1024px]:[animation-timeline:scroll(root)]">
+      <section id="people_say" className="h-auto flex flex-col gap-[10px] min-[1024px]:animate-showElementTransitionOpacityBottomToTop min-[1024px]:[animation-range:70%_95%] min-[1024px]:[animation-timeline:scroll(root)] max-[1024px]:animate-showElementTransitionOpacityBottomToTop max-[1024px]:[animation-range:75%_95%] max-[1024px]:[animation-timeline:scroll(root)]">
         <h1 className="text-center text-[25px] font-semibold pr-[10px]">People Say</h1>
         <hr />
         <div className="flex flex-wrap gap-[10px] justify-center">
           {peoples.map((people, i) => {
-            const { fullName, imgUrl, organization, comment } = people;
-            return peopleSay({fullName, imgUrl, organization, comment, key: i});
+            const { fullName, imgUrl, userLink, organization, comment } = people;
+            return peopleSay({fullName, imgUrl, userLink, organization, comment, key: i});
           })}
         </div>
       </section>
